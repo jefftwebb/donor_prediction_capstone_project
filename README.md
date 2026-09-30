@@ -49,4 +49,4 @@ Solicitation history and Passport viewing summaries will be added as new tables.
 
 ## Reporting a problem
 
-Report suspected data problems to [channel].
+Report suspected data problems to Jeff.

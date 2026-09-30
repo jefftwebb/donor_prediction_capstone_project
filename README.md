@@ -1,0 +1,52 @@
+# PBS Utah donor data: SYNTHETIC
+
+These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. Every team works with this same dataset.
+
+Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated. Effect sizes here are not PBS Utah's.
+
+## What's in the folder
+
+- `tables/`: `constituents_w_memberships.csv`, `unite_payments.csv`, `soft_credits.csv`, `team_approach_legacy_payments.csv`, `campaign_codes.csv`, `cultivation.csv`, `officer_portfolios.csv`
+- `docs/`:
+  - **Student Data Dictionary (SYNTHETIC).** Start here. It lists the files, the synthetic conventions, and the known issues.
+  - **PBS Utah's data dictionaries.** They define the columns. They describe PBS Utah's real systems; where the synthetic data differ, the student dictionary says so.
+  - **Business Problem Statements.**
+- `MANIFEST.txt`: row counts for each table.
+- `SHA256SUMS.txt`: checksums. Run `shasum -a 256 -c SHA256SUMS.txt` in the folder to confirm your copy is intact.
+
+## Downloading from GitHub
+
+The two largest tables use Git LFS (Large File Storage). Install Git LFS, run
+`git lfs install` once, then clone the repository and download the tables:
+
+```bash
+git clone https://github.com/jefftwebb/donor_prediction_capstone_project.git
+cd donor_prediction_capstone_project
+git lfs pull
+```
+
+If you download a GitHub ZIP instead, the large CSVs may be small Git LFS
+pointer files rather than data. Use the commands above to obtain the tables.
+
+## Before you start
+
+- **File size.** The payment tables have more than 1,048,576 rows. Excel cuts off the extra rows without warning, so use Python, R, or a database.
+- **Fiscal years** run July through June; FY2026 is July 2025 to June 2026 and is complete in this release.
+- **Unit of analysis.** The $1,200 target is defined on fiscal-year giving for each donor. Payments have many rows per donor (sustainers pay monthly), so total them to the donor-year before modeling. Do not weight analyses by payment rows.
+- **Validation.** Split training and test data by donor, keeping spouses together, or by time. Never split randomly by row: a donor's other years would sit on both sides and leak future information.
+- **Crediting.** Soft credits recognize gifts paid by organizations, such as donor-advised funds, on a person's behalf. DAF giving appears there. Do not add hard payments and soft credits together as revenue.
+- **Population.** The constituents table includes people who never gave, and may include organization records. Filter to the population your question needs.
+- **Legacy (Team Approach) rows** can list up to seven constituent IDs for one household. If you unpivot those columns and then sum, you count the same gift several times. Some legacy rows link to no constituent, as in the real data.
+- **Snapshot fields,** such as the sustainer flag, major-donor class, and age, describe the donor as of the extract date, not in past years. Using them as features for earlier years leaks the future.
+
+## Known issues
+
+Known issues are listed in the Student Data Dictionary. New ones will be added there. The data files themselves will not change.
+
+## Later additions
+
+Solicitation history and Passport viewing summaries will be added as new tables. The existing tables will not change.
+
+## Reporting a problem
+
+Report suspected data problems to [channel].

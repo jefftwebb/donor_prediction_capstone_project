@@ -2,7 +2,7 @@
 
 These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. Every team works with this same dataset.
 
-Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated. Effect sizes here are not PBS Utah's.
+Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated, but are generally reflective of patterns in the real data.. Effect sizes here are not PBS Utah's.
 
 ## What's in the folder
 

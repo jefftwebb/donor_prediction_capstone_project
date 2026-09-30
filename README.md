@@ -34,7 +34,7 @@ pointer files rather than data. Use the commands above to obtain the tables.
 - **Fiscal years** run July through June; FY2026 is July 2025 to June 2026 and is complete in this release.
 - **Unit of analysis.** The $1,200 target is defined on fiscal-year giving for each donor. Payments have many rows per donor (sustainers pay monthly), so total them to the donor-year before modeling. Do not weight analyses by payment rows.
 - **Validation.** Split training and test data by donor, keeping spouses together, or by time. Never split randomly by row: a donor's other years would sit on both sides and leak future information.
-- **Crediting.** Soft credits recognize gifts paid by organizations, such as donor-advised funds, on a person's behalf. DAF giving appears there. Do not add hard payments and soft credits together as revenue.
+- **Crediting.** Soft credits recognize gifts for which an organization received the hard credit, including gifts from donor-advised funds. For revenue totals, count payments only: soft credits provide constituent recognition and must not be added as additional revenue.
 - **Population.** The constituents table includes people who never gave, and may include organization records. Filter to the population your question needs.
 - **Legacy (Team Approach) rows** can list up to seven constituent IDs for one household. If you unpivot those columns and then sum, you count the same gift several times. Some legacy rows link to no constituent, as in the real data.
 - **Snapshot fields,** such as the sustainer flag, major-donor class, and age, describe the donor as of the extract date, not in past years. Using them as features for earlier years leaks the future.

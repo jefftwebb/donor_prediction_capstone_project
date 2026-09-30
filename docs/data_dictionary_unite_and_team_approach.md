@@ -26,8 +26,6 @@ Supplement 1: Campaign Codes / Marketing Codes / Source Codes
 
 Supplement 2: Making Team Approach Play Nice with Unite
 
-Supplement 3: The [Unofficial] VPPA Data Dictionary – This is additional information on the Passport Viewing Data, lovingly referred to as VPPA quite often
-
 ## constituents_w_memberships.csv
 
 | Order | Field Name | Data Type | Primary Key | Nullable | Values | Meaning |
@@ -319,6 +317,4 @@ Examples:
 
 - A Pledge_Gift_Type of "Installment" can be changed to "Standard" for simplicity
 
-## Supplement 3: The [Unofficial] VPPA Data Dictionary – This is additional information on the Passport Viewing Data, lovingly referred to as VPPA quite often
 
-See PDF entitled VPPA-data-dictionary-with-screenshots.pdf

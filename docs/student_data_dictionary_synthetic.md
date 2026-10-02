@@ -6,11 +6,9 @@ This student-facing dictionary describes the files emitted by the synthetic
 donor generator, the conventions that differ from production data, and known
 release limitations. No row represents a real person or gift.
 
-PBS Utah's original dictionaries remain authoritative for the meaning of
-source-system fields. In particular, use
-`data_dictionary_unite_and_team_approach.md`,
+Use `data_dictionary_unite_and_team_approach.md`,
 and `soft_credits_data_dictionary.md` for production key, crediting, scope,
-and field semantics. This document does not amend those originals.
+and field semantics. 
 
 ## Public file inventory
 

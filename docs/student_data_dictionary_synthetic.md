@@ -58,27 +58,14 @@ tables; their fields and synthetic conventions are documented below.
   history is represented in Team Approach.
 - Output identifiers are fabricated. They preserve only the documented joins
   needed for the student analysis.
-- Fiscal-year giving and the $1,200 crossing target use recognition credit.
-  A routed organization gift belongs to the soft-credited constituent; do not
-  add its hard and soft sides as two gifts.
 - A donor's annual giving band is preserved during emission. Large gifts are
   represented only through the published bands and generated values; no rare
   or extreme real amount is copied.
-- `campaign_members.csv` and `passport_engagement_by_genre.csv` are additive
-  tables. They do not change any base-release row. They were generated from
-  aggregate statistics and the released tables using a seed stream separate
-  from the base release.
+
 
 ### campaign_members.csv
 
-The column names follow the source campaign-members schema; the date and
-response-field conventions below are synthetic exceptions.
-`constituent_id` values are the released
-synthetic `Constituent ID` values, and `marketing_code` values are the
-released campaign-code catalog values. `campaign_start_date` is the first day
-of the represented fiscal year.
-
-That date is a synthetic fiscal-year marker, not an observed contact date or
+`campaign_start_date` is the first day of the represented fiscal year.  That date is a synthetic fiscal-year marker, not an observed contact date or
 the original campaign's start date. Do not use it to infer contact timing.
 
 The table has no unique row identifier. More than one solicitation may have
@@ -97,24 +84,7 @@ to one row per constituent, marketing code, and fiscal year, then join that
 result to the solicitation table. Joining raw payment rows directly can
 duplicate solicitations when several payments share the response key.
 `response_type` is `Payment` for linked responses and blank otherwise;
-`indirect_response` is always `FALSE`. These fields are synthetic conventions,
-not modeled relationships supplied by the additions pack.
-
-For this link, payment IDs are normalized and deduplicated (first row kept);
-dates must parse, amounts must be positive, and constituent and marketing-code
-keys must join the released catalogs. Use `donor_id`, `marketing_code`, and
-the fiscal year of `credit_date` as the payment-side response key. Normalize
-both sides as stripped uppercase strings, remove a trailing `.0`, and strip
-leading zeros on numeric constituent IDs. `credit_date` is used by the
-synthetic convention; the original Unite dictionary labels it Date of Pledge.
-
-The pack supplies anonymized campaign-category shares, not a mapping to the
-released marketing codes. The generator assigns codes to those categories
-artificially: payment-used codes belong to `Other`, and unused catalog codes
-are distributed across the categories. This is not a real category-to-code
-relationship. All linked responses consequently fall in `Other`; code-specific
-response comparisons and catalog attributes must not be interpreted as
-pack-supported effects.
+`indirect_response` is always `FALSE`. 
 
 The pack's solicitation-count distributions describe constituent-years with
 at least one solicitation. Coverage probabilities are estimated from annual

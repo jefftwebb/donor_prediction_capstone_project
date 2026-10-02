@@ -2,21 +2,18 @@
 
 These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. Every team works with this same dataset.
 
-Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated, but are generally reflective of patterns in the real data.. Effect sizes here are not PBS Utah's.
+Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated, but are generally reflective of patterns in the real data. Effect sizes here are not PBS Utah's.
 
 ## What's in the folder
 
-- `tables/`: `constituents_w_memberships.csv`, `unite_payments.csv`, `soft_credits.csv`, `team_approach_legacy_payments.csv`, `campaign_codes.csv`, `cultivation.csv`, `officer_portfolios.csv`
+- `tables/`: `constituents_w_memberships.csv`, `unite_payments.csv`, `soft_credits.csv`, `team_approach_legacy_payments.csv`, `campaign_codes.csv`, `campaign_members.csv`, `passport_engagement_by_genre.csv`, `cultivation.csv`, `officer_portfolios.csv`
 - `docs/`:
   - **Student Data Dictionary (SYNTHETIC).** Start here. It lists the files, the synthetic conventions, and the known issues.
   - **PBS Utah's data dictionaries.** They define the columns. They describe PBS Utah's real systems; where the synthetic data differ, the student dictionary says so.
-  - **Business Problem Statements.**
-- `MANIFEST.txt`: row counts for each table.
-- `SHA256SUMS.txt`: checksums. Run `shasum -a 256 -c SHA256SUMS.txt` in the folder to confirm your copy is intact.
 
 ## Downloading from GitHub
 
-The two largest tables use Git LFS (Large File Storage). Install Git LFS, run
+The largest tables use Git LFS (Large File Storage). Install Git LFS, run
 `git lfs install` once, then clone the repository and download the tables:
 
 ```bash
@@ -30,7 +27,7 @@ pointer files rather than data. Use the commands above to obtain the tables.
 
 ## Before you start
 
-- **File size.** The payment tables have more than 1,048,576 rows. Excel cuts off the extra rows without warning, so use Python, R, or a database.
+- **File size.** Several payment and solicitation tables have more than 1,048,576 rows. Excel cuts off the extra rows without warning, so use Python, R, or a database.
 - **Fiscal years** run July through June; FY2026 is July 2025 to June 2026 and is complete in this release.
 - **Unit of analysis.** The $1,200 target is defined on fiscal-year giving for each donor. Payments have many rows per donor (sustainers pay monthly), so total them to the donor-year before modeling. Do not weight analyses by payment rows.
 - **Validation.** Split training and test data by donor, keeping spouses together, or by time. Never split randomly by row: a donor's other years would sit on both sides and leak future information.
@@ -43,9 +40,9 @@ pointer files rather than data. Use the commands above to obtain the tables.
 
 Known issues are listed in the Student Data Dictionary. New ones will be added there. The data files themselves will not change.
 
-## Later additions
+## Additive tables
 
-Solicitation history and Passport viewing summaries will be added as new tables. The existing tables will not change.
+Solicitation history and Passport viewing summaries were added without changing the existing tables.
 
 ## Reporting a problem
 

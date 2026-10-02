@@ -1,8 +1,6 @@
 # PBS Utah donor data: SYNTHETIC
 
-These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. Every team works with this same dataset.
-
-Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated, but are generally reflective of patterns in the real data. Effect sizes here are not PBS Utah's.
+These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. 
 
 **Schema limitation.** These tables were designed for a synthetic teaching
 project. Their table names, columns, keys, and relationships do not necessarily
@@ -13,7 +11,7 @@ PBS Utah stores or organizes donor data.
 
 - `tables/`: `constituents_w_memberships.csv`, `unite_payments.csv`, `soft_credits.csv`, `team_approach_legacy_payments.csv`, `campaign_codes.csv`, `campaign_members.csv`, `passport_engagement_by_genre.csv`, `cultivation.csv`, `officer_portfolios.csv`
 - `docs/`:
-  - **Student Data Dictionary (SYNTHETIC).** Start here. It lists the files, the synthetic conventions, and the known issues.
+  - **Student Data Dictionary (SYNTHETIC).** This lists the files, the synthetic conventions, and the known issues.
   - **Reference data dictionaries.** They explain source-field meanings but do not guarantee that the synthetic tables reproduce PBS Utah's table layout, column set, keys, or relationships.
 
 ## Downloading from GitHub
@@ -34,7 +32,6 @@ pointer files rather than data. Use the commands above to obtain the tables.
 
 - **File size.** Several payment and solicitation tables have more than 1,048,576 rows. Excel cuts off the extra rows without warning, so use Python, R, or a database.
 - **Fiscal years** run July through June; FY2026 is July 2025 to June 2026 and is complete in this release.
-- **Unit of analysis.** The $1,200 target is defined on fiscal-year giving for each donor. Payments have many rows per donor (sustainers pay monthly), so total them to the donor-year before modeling. Do not weight analyses by payment rows.
 - **Validation.** Split training and test data by donor, keeping spouses together, or by time. Never split randomly by row: a donor's other years would sit on both sides and leak future information.
 - **Crediting.** Soft credits recognize gifts for which an organization received the hard credit, including gifts from donor-advised funds. For revenue totals, count payments only: soft credits provide constituent recognition and must not be added as additional revenue.
 - **Population.** The constituents table includes people who never gave, and may include organization records. Filter to the population your question needs.

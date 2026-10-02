@@ -4,12 +4,17 @@ These tables are synthetic. They were generated from aggregate statistics of PBS
 
 Your results validate methods, not conclusions about PBS Utah donors. Which predictors matter reflects how the data were generated, but are generally reflective of patterns in the real data. Effect sizes here are not PBS Utah's.
 
+**Schema limitation.** These tables were designed for a synthetic teaching
+project. Their table names, columns, keys, and relationships do not necessarily
+match PBS Utah's actual or current schema. Do not use this release to infer how
+PBS Utah stores or organizes donor data.
+
 ## What's in the folder
 
 - `tables/`: `constituents_w_memberships.csv`, `unite_payments.csv`, `soft_credits.csv`, `team_approach_legacy_payments.csv`, `campaign_codes.csv`, `campaign_members.csv`, `passport_engagement_by_genre.csv`, `cultivation.csv`, `officer_portfolios.csv`
 - `docs/`:
   - **Student Data Dictionary (SYNTHETIC).** Start here. It lists the files, the synthetic conventions, and the known issues.
-  - **PBS Utah's data dictionaries.** They define the columns. They describe PBS Utah's real systems; where the synthetic data differ, the student dictionary says so.
+  - **Reference data dictionaries.** They explain source-field meanings but do not guarantee that the synthetic tables reproduce PBS Utah's table layout, column set, keys, or relationships.
 
 ## Downloading from GitHub
 

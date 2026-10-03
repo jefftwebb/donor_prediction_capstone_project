@@ -1,10 +1,6 @@
 # PBS Utah donor data: SYNTHETIC
 
-These tables are synthetic. They were generated from aggregate statistics of PBS Utah's donor records. No row is a real person, gift, or ID. 
-
-**Schema limitation.** These tables were designed for a synthetic teaching
-project. Their table names, columns, keys, and relationships do not necessarily
-match PBS Utah's actual or current schema. Do not use this release to infer how
+These tables are synthetic. No row is a real person, gift, or ID. Table names, columns, keys, and relationships do not necessarily match PBS Utah's actual or current schema. Do not use this release to infer how
 PBS Utah stores or organizes donor data.
 
 ## What's in the folder

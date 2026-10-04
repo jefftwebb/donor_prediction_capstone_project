@@ -1,4 +1,4 @@
 tables/unite_payments.csv filter=lfs diff=lfs merge=lfs -text
 tables/team_approach_legacy_payments.csv filter=lfs diff=lfs merge=lfs -text
-tables/passport_engagement_by_genre.csv filter=lfs diff=lfs merge=lfs -text
+tables/passport_viewing.csv filter=lfs diff=lfs merge=lfs -text
 tables/campaign_members.csv filter=lfs diff=lfs merge=lfs -text

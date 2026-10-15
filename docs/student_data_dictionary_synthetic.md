@@ -100,6 +100,6 @@ A constituent-year has rows only if the constituent viewed something that year. 
 
   The IDs of these rows begin `SYN-DEF-` (`SYN-UNMATCHED` in the legacy table). These labels reveal a synthetic-data artifact; they are not business information. Do not use these prefixes or `SYN-ORPHAN` as a shortcut for cleaning or prediction.
 
-- **Build reusable checks.** Use documented keys, link validation, amount and date checks, and duplicate checks to identify problems. Keep identifiers for joins, grouping and record tracking, but do not interpret their prefixes, serial numbers or ordering as predictive features. Do not discard all records containing `SYN`: valid records use synthetic identifiers too. Record your cleaning decisions and distinguish release-specific exceptions from rules that PBS Utah would need to confirm on real data. In particular, an unmatched marketing code alone does not establish that a real payment is invalid; the copy-row behavior above is specific to this synthetic release.
+- **Build reusable checks.** Find problems by checking links, amounts, dates, and duplicates—not synthetic labels. Use IDs to join and track records, not as predictors. Do not drop records just because their IDs contain `SYN`. Document your cleaning decisions, including which depend on this synthetic dataset. In real data, a missing marketing-code match does not necessarily mean a payment is invalid.
 
 Issues found after release are listed here; the data files will not change.

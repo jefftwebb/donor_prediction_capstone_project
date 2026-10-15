@@ -18,16 +18,21 @@ The tables follow the structure of --- without reproducing --- PBS Utah's donor 
 | `cultivation.csv` | Donor-year assignment | `synthetic_id`, `fiscal_year` |
 | `officer_portfolios.csv` | Officer portfolio | `portfolio_id` |
  
-Every link above matches a row in the table it points to, with two exceptions: some legacy rows link to no constituent, and soft credits whose recipient could not be matched carry the ID `SYN-ORPHAN`.
- 
+Links match a row in the table they point to, with these exceptions:
+
+- In `unite_payments.csv`, some payments carry `SYN-ORPHAN` as `donor_id` or as `marketing_code`. That value matches no row.
+- In `team_approach_legacy_payments.csv`, rows whose `ta_account_id` begins `SYN-UNMATCHED` list no constituent.
+- In `soft_credits.csv`, recipients that could not be matched carry `SYN-ORPHAN`.
+
 ## Conventions
  
 - **Fiscal years** run July through June; FY2026 is July 2025 to June 2026. Payments in `unite_payments.csv` begin in FY2021; earlier giving is in `team_approach_legacy_payments.csv`.
 - **Fiscal-year giving** for a constituent is the sum of positive payments the constituent made, plus positive soft credits assigned to the constituent, after exact duplicate rows are removed. A gift paid by an organization, such as a donor-advised fund, and soft-credited to a person counts once, as that person's giving.
-- **Legacy households.** A legacy row can list up to seven constituent IDs for one household gift.
+- **Legacy households.** The schema allows up to seven constituent IDs per legacy row; in this release at most two are filled.
 - **Recurring gifts** pay in all twelve months of each fiscal year a schedule is active.
 - **Snapshot fields** in the constituents table, such as the sustainer flag, major-donor class and age, describe each constituent as of the end of the data, not in earlier years.
-- **Blank fields.** Degree, employment and university-wide legacy fields are blank throughout.
+- **Codes and identifiers.** Marketing codes and legacy source codes are serial identifiers. The character positions described in the reference dictionary do not apply. Each legacy `source_code` and each Unite `opportunity_id` belongs to a single payment, so neither groups related gifts. Copy rows are the exception described under Known issues. Marketing codes still link payments and solicitations to the campaign-code table.
+- **Placeholder fields.** Many fields this release does not model hold a constant placeholder, such as `Synthetic`, `Synthetic City` or `00`, or are blank. Examples include premium fields and degree, employment and university-wide legacy fields. Many campaign-code components are also constant; `Communication Method` varies. Do not infer meaning from placeholder values.
 ## Soft credits
  
 - Each soft credit is assigned to one person. No gift is credited to both spouses.
@@ -86,6 +91,14 @@ A constituent-year has rows only if the constituent viewed something that year. 
 | `rollout_fy` | Fiscal year the portfolio adopted the cultivation program; blank if never |
  
 ## Known issues
- 
-None at release. Issues found after release will be listed here; the data files will not change.
- 
+
+- **Copy rows.** Some rows are copies of another row in the same file, with one link removed or the amount set to 0. None of them is part of any constituent's giving.
+  - `unite_payments.csv`: the donor or marketing code is `SYN-ORPHAN`, or the amount is 0. A copy shares the `opportunity_id` of the payment it copies.
+  - `soft_credits.csv`: the recipient is `SYN-ORPHAN`, or the amount is 0.
+  - `team_approach_legacy_payments.csv`: the constituent IDs are blank. A copy shares the `source_code` of the row it copies.
+
+  The IDs of these rows begin `SYN-DEF-` (`SYN-UNMATCHED` in the legacy table). These labels reveal a synthetic-data artifact; they are not business information. Do not use these prefixes or `SYN-ORPHAN` as a shortcut for cleaning or prediction.
+
+- **Build reusable checks.** Use documented keys, link validation, amount and date checks, and duplicate checks to identify problems. Keep identifiers for joins, grouping and record tracking, but do not interpret their prefixes, serial numbers or ordering as predictive features. Do not discard all records containing `SYN`: valid records use synthetic identifiers too. Record your cleaning decisions and distinguish release-specific exceptions from rules that PBS Utah would need to confirm on real data. In particular, an unmatched marketing code alone does not establish that a real payment is invalid; the copy-row behavior above is specific to this synthetic release.
+
+Issues found after release are listed here; the data files will not change.

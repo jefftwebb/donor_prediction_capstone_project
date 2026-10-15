@@ -1,11 +1,11 @@
 # Data Dictionary: Synthetic Donor Data
- 
+
 Every row in these tables is synthetic. Identifiers are fabricated, and no row describes a real person, gift, solicitation or viewing record.
- 
+
 The tables follow the structure of --- without reproducing --- PBS Utah's donor systems. Column definitions for the constituent, payment, legacy and campaign-code tables are in `data_dictionary_unite_and_team_approach.md`, and soft-credit columns are in `soft_credits_data_dictionary.md`. This dictionary covers the files, the columns those documents do not, and conventions specific to this dataset.
- 
+
 ## Files
- 
+
 | File | One row per | Key or link |
 |---|---|---|
 | `constituents_w_memberships.csv` | Constituent: people and organizations, including people who never gave | `Constituent ID` |
@@ -17,7 +17,7 @@ The tables follow the structure of --- without reproducing --- PBS Utah's donor 
 | `passport_engagement_by_genre.csv` | Constituent, fiscal year and genre, for years with viewing | `constituent_id`, `fiscal_year`, `genre` (unique together) |
 | `cultivation.csv` | Donor-year assignment | `synthetic_id`, `fiscal_year` |
 | `officer_portfolios.csv` | Officer portfolio | `portfolio_id` |
- 
+
 Links match a row in the table they point to, with these exceptions:
 
 - In `unite_payments.csv`, some payments carry `SYN-ORPHAN` as `donor_id` or as `marketing_code`. That value matches no row.
@@ -25,7 +25,7 @@ Links match a row in the table they point to, with these exceptions:
 - In `soft_credits.csv`, recipients that could not be matched carry `SYN-ORPHAN`.
 
 ## Conventions
- 
+
 - **Fiscal years** run July through June; FY2026 is July 2025 to June 2026. Payments in `unite_payments.csv` begin in FY2021; earlier giving is in `team_approach_legacy_payments.csv`.
 - **Fiscal-year giving** for a constituent is the sum of positive payments the constituent made, plus positive soft credits assigned to the constituent, after exact duplicate rows are removed. A gift paid by an organization, such as a donor-advised fund, and soft-credited to a person counts once, as that person's giving.
 - **Legacy households.** The schema allows up to seven constituent IDs per legacy row; in this release at most two are filled.
@@ -33,8 +33,9 @@ Links match a row in the table they point to, with these exceptions:
 - **Snapshot fields** in the constituents table, such as the sustainer flag, major-donor class and age, describe each constituent as of the end of the data, not in earlier years.
 - **Codes and identifiers.** Marketing codes and legacy source codes are serial identifiers. The character positions described in the reference dictionary do not apply. Each legacy `source_code` and each Unite `opportunity_id` belongs to a single payment, so neither groups related gifts. Copy rows are the exception described under Known issues. Marketing codes still link payments and solicitations to the campaign-code table.
 - **Placeholder fields.** Many fields this release does not model hold a constant placeholder, such as `Synthetic`, `Synthetic City` or `00`, or are blank. Examples include premium fields and degree, employment and university-wide legacy fields. Many campaign-code components are also constant; `Communication Method` varies. Do not infer meaning from placeholder values.
+
 ## Soft credits
- 
+
 - Each soft credit is assigned to one person. No gift is credited to both spouses.
 - Some `Credit ID` values repeat as exact duplicate rows.
 - `Designation Detail ID` matches the designation ID of the corresponding payment in `unite_payments.csv`.
@@ -43,7 +44,7 @@ Links match a row in the table they point to, with these exceptions:
 - Soft credits begin in FY2021.
 - Recipients with no matching constituent carry the ID `SYN-ORPHAN`.
 ## campaign_members.csv
- 
+
 | Field | Meaning |
 |---|---|
 | `constituent_id` | Solicited constituent; links to `Constituent ID` |
@@ -54,11 +55,11 @@ Links match a row in the table they point to, with these exceptions:
 | `responded_date` | Date of the earliest such payment; blank otherwise |
 | `response_type` | `Payment` for responses; blank otherwise |
 | `indirect_response` | Always `FALSE` |
- 
+
 A constituent can appear more than once with the same marketing code and fiscal year when none of those solicitations drew a response; a solicitation that drew a response appears once. One response can correspond to several payments with the same constituent, marketing code and fiscal year.
- 
+
 ## passport_engagement_by_genre.csv
- 
+
 | Field | Meaning |
 |---|---|
 | `constituent_id` | Viewing constituent; links to `Constituent ID` |
@@ -66,11 +67,11 @@ A constituent can appear more than once with the same marketing code and fiscal 
 | `genre` | Program genre; uncommon genres are grouped as `Other` |
 | `titles_viewed` | Number of distinct titles viewed in the genre that year |
 | `mean_percent_watched` | Average share of each title watched, from 0 to 1 |
- 
+
 A constituent-year has rows only if the constituent viewed something that year. A year without rows can mean no linked Passport account, no consent to share viewing, or no viewing; the table does not distinguish these. The table records viewing by year; it does not record when an account was created.
- 
+
 ## cultivation.csv
- 
+
 | Field | Meaning |
 |---|---|
 | `synthetic_id` | Constituent; matches `Constituent ID` |
@@ -80,16 +81,16 @@ A constituent-year has rows only if the constituent viewed something that year. 
 | `contacted` | Selected donor assigned to contact |
 | `holdout` | Selected donor randomly withheld from contact |
 | `program_adopted` | The portfolio had adopted the cultivation program |
- 
+
 ## officer_portfolios.csv
- 
+
 | Field | Meaning |
 |---|---|
 | `portfolio_id` | Portfolio identifier |
 | `officer_id` | Officer identifier |
 | `capacity` | Number of donors the portfolio can select each year |
 | `rollout_fy` | Fiscal year the portfolio adopted the cultivation program; blank if never |
- 
+
 ## Known issues
 
 - **Copy rows.** Some rows are copies of another row in the same file, with one link removed or the amount set to 0. None of them is part of any constituent's giving.

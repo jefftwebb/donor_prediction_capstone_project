@@ -93,7 +93,7 @@ A constituent-year has rows only if the constituent viewed something that year. 
 
 ## Known issues
 
-- **Cultivation and officer portfolios.** These tables have no counterpart in the PBS Utah source tables supplied for this project. Their assignments, portfolios, rollout, and effects are invented for teaching and do not describe PBS Utah's operations or measured results.
+- **Cultivation and officer portfolios.** These tables have no counterpart in the PBS Utah source tables supplied for this project. Their assignments, portfolios, rollout, and effects are invented for teaching and do not describe PBS Utah's operations or measured results. Yearly crossing rates are calibrated to PBS Utah's records; realized totals vary. Simulated contact shifts crossing probability toward contacted donors selected for cultivation, beginning in FY2023, with larger influence later in the series. Calibration also adjusts probabilities for holdouts and donors not selected. Report crossing-propensity results with and without the `contacted` indicator, and separately for donors not selected for cultivation.
 
 - **Age.** `Age` is fully populated with synthetic values. No direct age effect on next-year major-donor crossing is planted; indirect associations can remain. These values cannot establish how age predicts giving at PBS Utah.
 

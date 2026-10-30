@@ -93,6 +93,16 @@ A constituent-year has rows only if the constituent viewed something that year. 
 
 ## Known issues
 
+- **Cultivation and officer portfolios.** These tables have no counterpart in the PBS Utah source tables supplied for this project. Their assignments, portfolios, rollout, and effects are invented for teaching and do not describe PBS Utah's operations or measured results.
+
+- **Age.** `Age` is fully populated with synthetic values. No direct age effect on next-year major-donor crossing is planted; indirect associations can remain. These values cannot establish how age predicts giving at PBS Utah.
+
+- **Acquisition channel.** The synthetic data do not reproduce PBS Utah's third-party acquisition-channel signal. No separate channel effect on next-year crossing is planted; indirect associations can remain. DAF giving remains a separate source of predictive information.
+
+- **Second gifts.** The share of eligible donor-years with at least two one-time gifts is about twice that in PBS Utah's records.
+
+- **System cutover.** The synthetic cutover is FY2021: Unite payments and soft credits begin then; earlier giving appears in Team Approach. This does not reproduce the production migration date.
+
 - **Copy rows.** Some rows are copies of another row in the same file, with one link removed or the amount set to 0. None of them is part of any constituent's giving.
   - `unite_payments.csv`: the donor or marketing code is `SYN-ORPHAN`, or the amount is 0. A copy shares the `opportunity_id` of the payment it copies.
   - `soft_credits.csv`: the recipient is `SYN-ORPHAN`, or the amount is 0.
